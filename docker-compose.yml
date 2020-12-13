@@ -1,0 +1,81 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - '8000:80'
+    depends_on:
+      - app
+    volumes:
+      - ./web/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app:/usr/share/nginx/html
+
+  app:
+    build:
+    
+      args:
+        user: siwai0208
+        uid: 1000
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/usr/share/nginx/html
+      - ./app/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+
+  nginxexporter:
+    image: nginx/nginx-prometheus-exporter
+    ports:
+      - "9113:9113"
+    environment:
+      - SCRAPE_URI=http://web/nginx_status
+    depends_on:
+      - web
+
+  phpexporter:
+    image: hipages/php-fpm_exporter
+    ports:
+      - "9253:9253"
+    environment:
+      - PHP_FPM_SCRAPE_URI=tcp://app:9000/status
+    depends_on:
+      - app
+
+  mysqlexporter:
+    image: prom/mysqld-exporter
+    ports:
+      - "9104:9104"
+    environment:
+      - DATA_SOURCE_NAME=root:password@(mysql:3306)/
+    links:
+      - mysql
+
+volumes:
+  db:
+  grafana:
