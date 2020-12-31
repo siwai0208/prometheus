@@ -25,10 +25,10 @@ scrape_configs:
     - targets: ['localhost:9090']
   - job_name: 'nginx'
     static_configs:
-    - targets: ['192.168.1.10:9113']
+    - targets: ['(Your-Host-IP):9113']
   - job_name: 'php-fpm'
     static_configs:
-    - targets: ['192.168.1.10:9253']
+    - targets: ['(Your-Host-IP):9253']
   - job_name: 'mysql'
     static_configs:
-    - targets: ['192.168.1.10:9104']
+    - targets: ['(Your-Host-IP):9104']
