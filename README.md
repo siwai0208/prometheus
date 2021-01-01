@@ -18,7 +18,7 @@ Docker環境向けのPrometheusモニタリング＋Grafana可視化
 
 1. clone the repository
 ```
-$ git clone https://github.com/siwai0208/docker-template-laravel
+$ git clone https://github.com/siwai0208/prometheus
 ```
 
 2. convert prometheus.yml file (Your-Host-IP) to x.x.x.x
@@ -62,14 +62,20 @@ prometheus_web_1             /docker-entrypoint.sh ngin ...   Up      0.0.0.0:80
 Prometheus: x.x.x.x:9090
 ![prometheus](https://user-images.githubusercontent.com/53518005/103404532-7c6ab180-4b86-11eb-9d70-9f346cedd2cd.PNG)
 
-<br>
-
 Grafana: x.x.x.x:3000 (default login username : admin password : admin)
 ![grafana](https://user-images.githubusercontent.com/53518005/103404535-7ffe3880-4b86-11eb-8bd3-7e89c89ff742.PNG)
 
-<br>
+7. Add Prometheus Data Source
+
+Setting->Data Source->Add data source->Prometheus
+
+![grafana](https://user-images.githubusercontent.com/53518005/103442338-e3bc5a80-4c87-11eb-8cb0-0bc27146fa31.PNG)
+
+add URL http://prometheus:9090 and "Save & Test"
+
+![grafana](https://user-images.githubusercontent.com/53518005/103442341-e454f100-4c87-11eb-9c38-e53eca0ae2a0.PNG)
 
 Dashboard Sample on Grafana
 ![grafana](https://user-images.githubusercontent.com/53518005/103404541-84c2ec80-4b86-11eb-85f7-a243841637d5.PNG)
 
-7. (Option) Continue to setup laravel application, see [Here](https://github.com/siwai0208/food-app)
+8. (Option) Continue to setup laravel application, see [Here](https://github.com/siwai0208/food-app)
