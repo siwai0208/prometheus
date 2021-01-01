@@ -34,12 +34,17 @@ $ git clone https://github.com/siwai0208/docker-template-laravel
     - targets: ['(Your-Host-IP):9104']
 ```
 
-3. up docker-compose
+3. chown grafana directory
+```
+$  sudo chown -R 472:472 grafana
+```
+
+4. up docker-compose
 ```
 $ docker-compose up
 ```
 
-4. confirm container status by docker-compose ps
+5. confirm container status by docker-compose ps
 ```
 $ docker-compose ps
 prometheus_app_1             docker-php-entrypoint php-fpm    Up      9000/tcp
@@ -52,7 +57,7 @@ prometheus_prometheus_1      /bin/prometheus --config.f ...   Up      0.0.0.0:90
 prometheus_web_1             /docker-entrypoint.sh ngin ...   Up      0.0.0.0:8000->80/tcp
 ```
 
-5. Access web browser
+6. Access web browser
 
 Prometheus: x.x.x.x:9090
 ![prometheus](https://user-images.githubusercontent.com/53518005/103404532-7c6ab180-4b86-11eb-9d70-9f346cedd2cd.PNG)
@@ -66,3 +71,5 @@ Grafana: x.x.x.x:3000 (default login username : admin password : admin)
 
 Dashboard Sample on Grafana
 ![grafana](https://user-images.githubusercontent.com/53518005/103404541-84c2ec80-4b86-11eb-85f7-a243841637d5.PNG)
+
+7. (Option) Continue to setup laravel application, see [Here](https://github.com/siwai0208/food-app)
