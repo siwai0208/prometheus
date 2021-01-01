@@ -73,7 +73,7 @@ Setting->Data Source->Add data source->Prometheus
 
 add URL http://prometheus:9090 and "Save & Test"
 
-![grafana](https://user-images.githubusercontent.com/53518005/103442341-e454f100-4c87-11eb-9c38-e53eca0ae2a0.PNG)
+![grafana](https://user-images.githubusercontent.com/53518005/103442716-609d0380-4c8b-11eb-8c9b-e710b87d309b.PNG)
 
 Dashboard Sample on Grafana
 ![grafana](https://user-images.githubusercontent.com/53518005/103404541-84c2ec80-4b86-11eb-85f7-a243841637d5.PNG)
